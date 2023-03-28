@@ -5,8 +5,9 @@ namespace UIA.FPS_Demo.Chapter03
 {
     public class Fireball : MonoBehaviour
     {
-        public float speed = 10.0f;
+        public float speed = 6.0f;
         public int damage = 1;
+        public bool bounce = false;
 
         // Start is called before the first frame update
         void Start()
@@ -26,9 +27,16 @@ namespace UIA.FPS_Demo.Chapter03
             {
                 Debug.Log("Hit at player");
                 playerController.Hurt(damage);
+                Destroy(gameObject);
             }
-
-            Destroy(gameObject);
+            else if (!bounce)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                transform.Rotate(0.0f, 180.0f, 0.0f);
+            }
         }
     }
 }
