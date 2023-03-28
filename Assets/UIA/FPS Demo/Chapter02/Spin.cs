@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UIA.Chapter02
+namespace UIA.FPS_Demo.Chapter02
 {
     public class Spin : MonoBehaviour
     {

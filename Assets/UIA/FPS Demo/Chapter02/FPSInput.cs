@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UIA.Chapter02
+namespace UIA.FPS_Demo.Chapter02
 {
     [RequireComponent(typeof(CharacterController))]
     [AddComponentMenu("Control Script/FPS Input")]
