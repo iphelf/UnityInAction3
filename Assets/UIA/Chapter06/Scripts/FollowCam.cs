@@ -9,7 +9,7 @@ namespace UIA.Chapter06.Scripts
         private Vector3 _velocity = Vector3.zero;
 
         // Update is called once per frame
-        void LateUpdate()
+        void FixedUpdate()
         {
             var camTransform = transform;
             var cameraPos = camTransform.position;
