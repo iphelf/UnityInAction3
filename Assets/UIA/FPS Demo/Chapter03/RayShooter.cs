@@ -8,17 +8,19 @@ namespace UIA.FPS_Demo.Chapter03
     {
         private Camera cam;
 
+        private bool _ignoreInputs = false;
+
         // Start is called before the first frame update
         private void Start()
         {
             cam = GetComponent<Camera>();
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            captureCursor(true);
         }
 
         // Update is called once per frame
         private void Update()
         {
+            if (_ignoreInputs) return;
             if (Input.GetButtonDown("Fire1"))
             {
                 var screenCenter = new Vector3(cam.pixelWidth / 2.0f, cam.pixelHeight / 2.0f, 0.0f);
@@ -37,6 +39,20 @@ namespace UIA.FPS_Demo.Chapter03
                         target.ReactToHit();
                     }
                 }
+            }
+        }
+
+        private void captureCursor(bool captured)
+        {
+            if (captured)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
 
@@ -60,6 +76,12 @@ namespace UIA.FPS_Demo.Chapter03
             {
                 alignment = TextAnchor.MiddleCenter
             });
+        }
+
+        public void IgnoreInputs(bool ignoreInputs)
+        {
+            _ignoreInputs = ignoreInputs;
+            captureCursor(!ignoreInputs);
         }
     }
 }

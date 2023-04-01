@@ -1,10 +1,13 @@
+using UIA.FPS_Demo.Chapter07.Scripts;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace UIA.FPS_Demo.Chapter03
 {
     public class WanderingAI : MonoBehaviour
     {
-        public float speed = 3.0f;
+        public const float baseSpeed = 3.0f;
+        private float _speed = baseSpeed;
         public float sight = 5.0f;
 
         private bool _dead = false;
@@ -12,17 +15,12 @@ namespace UIA.FPS_Demo.Chapter03
         [SerializeField] private GameObject fireballPrefab;
         private GameObject _fireball;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
-
         // Update is called once per frame
         void Update()
         {
             if (!_dead)
             {
-                transform.Translate(0.0f, 0.0f, speed * Time.deltaTime);
+                transform.Translate(0.0f, 0.0f, _speed * Time.deltaTime);
                 Transform currTransform = transform;
                 Ray ray = new(currTransform.position, currTransform.forward);
                 if (Physics.SphereCast(ray, 0.75f, out var hit))
@@ -45,6 +43,21 @@ namespace UIA.FPS_Demo.Chapter03
                     }
                 }
             }
+        }
+
+        private void OnEnable()
+        {
+            Messenger<float>.AddListener(GameEvents.SpeedChanged, OnSpeedChanged);
+        }
+
+        private void OnDisable()
+        {
+            Messenger<float>.RemoveListener(GameEvents.SpeedChanged, OnSpeedChanged);
+        }
+
+        public void OnSpeedChanged(float speedScale)
+        {
+            _speed = baseSpeed * speedScale;
         }
 
         public void Kill()

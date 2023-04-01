@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace UIA.FPS_Demo.Chapter03
@@ -8,11 +7,6 @@ namespace UIA.FPS_Demo.Chapter03
         public float speed = 6.0f;
         public int damage = 1;
         public bool bounce = false;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
 
         // Update is called once per frame
         void Update()
