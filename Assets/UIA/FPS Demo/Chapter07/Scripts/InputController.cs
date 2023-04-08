@@ -33,11 +33,16 @@ namespace UIA.FPS_Demo.Chapter07.Scripts
 
         private void UpdateListeners()
         {
-            _mouseLookPlayer.IgnoreInputs(!fpsEnabled);
-            _fpsInput.IgnoreInputs(!fpsEnabled);
-            _mouseLookCamera.IgnoreInputs(!fpsEnabled);
-            _rayShooter.IgnoreInputs(!fpsEnabled);
-            _eventSystem.sendNavigationEvents = !fpsEnabled;
+            if (_mouseLookPlayer)
+                _mouseLookPlayer.IgnoreInputs(!fpsEnabled);
+            if (_fpsInput)
+                _fpsInput.IgnoreInputs(!fpsEnabled);
+            if (_mouseLookCamera)
+                _mouseLookCamera.IgnoreInputs(!fpsEnabled);
+            if (_rayShooter)
+                _rayShooter.IgnoreInputs(!fpsEnabled);
+            if (_eventSystem)
+                _eventSystem.sendNavigationEvents = !fpsEnabled;
         }
     }
 }
