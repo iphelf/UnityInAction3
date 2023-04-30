@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UIA.Chapter08.Scripts
+namespace UIA.TPS_Demo.Chapter08.Scripts
 {
     public class OrbitCamera : MonoBehaviour
     {

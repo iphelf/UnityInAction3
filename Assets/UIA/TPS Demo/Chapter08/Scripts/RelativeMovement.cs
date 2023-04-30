@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UIA.Chapter08.Scripts
+namespace UIA.TPS_Demo.Chapter08.Scripts
 {
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(Animator))]
@@ -14,6 +14,7 @@ namespace UIA.Chapter08.Scripts
         public float gravity = 9.8f;
         public float minFallSpeed = 1.5f;
         public float maxFallSpeed = 10.0f;
+        public float pushForce = 3.0f;
 
         private CharacterController _controller;
         private float _fallVelocity;
@@ -106,6 +107,13 @@ namespace UIA.Chapter08.Scripts
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             _lastContact = hit;
+
+            Rigidbody body = hit.rigidbody;
+            if (body != null && !body.isKinematic)
+            {
+                body.velocity = pushForce * hit.moveDirection;
+                // body.AddForce(pushForce * hit.moveDirection);
+            }
         }
     }
 }
