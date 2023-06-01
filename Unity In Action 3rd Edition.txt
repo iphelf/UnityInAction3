@@ -1,0 +1,47 @@
+我所学到的：
+- GameObject/Component的基本使用
+- Coroutine的基本使用
+- 粒子系统的基本使用
+- 基本的基于Ray、Collider的碰撞检测
+- 贴图、材质、天空的基本使用
+- transform的操作
+- 最简单的响应输入的方法
+- Sprite的基本使用
+- GameObject间的一般通信方法
+- Mecanim的基本使用
+- 基本的平台跳跃机制
+- 基本的2D相机跟随
+- 基本第三人称控制
+- 触发场景交互的三种方式（输入、物理、Trigger）
+- MVC的应用
+- 简单的Imediate Mode GUI控件
+- 设置天空渲染
+- Web资源请求、下载
+- Lambda的简单使用
+
+我还应该深入学习的：
+- Unity的核心概念
+- GameObject/Component机制的原理
+- Prefab的原理
+- 管理游戏对象资源
+- 刚体与碰撞系统
+- Coroutine与JobSystem
+- Unity中的光照系统
+- Unity中的3D变换
+- Unity中的3C（相机、角色、控制）
+- Unity的ECS（DOTS）
+- Unity的tween相关支持
+- 基于Sprite Atlas（精灵图集）的性能优化
+- Unity中的命名规范
+- C#相对于C++不同而有用的特性
+- C#中的const、readonly
+- C#中什么时候用函数，什么时候用property
+- Unity中什么时候用SerializeField，什么时候public
+- C#的对象内存布局
+- Unity中的Tile地图编辑
+- Unity中基于帧的移动和基于物理的移动
+- 地面、陡坡检测
+- Unity Shader
+- AssetBundle
+- Event、Lambda、Action、Func、delegate
+

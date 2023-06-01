@@ -1,34 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using UIA.TPS_Demo.Chapter09.Scripts;
 using UnityEngine;
 
-namespace UIA.TPS_Demo.Chapter09.Scripts
+namespace UIA.FPS_Demo.Chapter10.Scripts
 {
-    [RequireComponent(typeof(PlayerManager))]
-    [RequireComponent(typeof(InventoryManager))]
+    [RequireComponent(typeof(WeatherManager))]
+    [RequireComponent(typeof(ImagesManager))]
     public class Managers : MonoBehaviour
     {
-        public static PlayerManager Player { get; private set; }
-        public static InventoryManager Inventory { get; private set; }
+        public static WeatherManager Weather { get; private set; }
+        public static ImagesManager Images { get; private set; }
         private List<IGameManager> _startSequence;
 
         private void Awake()
         {
-            _startSequence = new List<IGameManager>();
+            Weather = GetComponent<WeatherManager>();
+            Images = GetComponent<ImagesManager>();
 
-            Player = GetComponent<PlayerManager>();
-            _startSequence.Add(Player);
-
-            Inventory = GetComponent<InventoryManager>();
-            _startSequence.Add(Inventory);
+            _startSequence = new List<IGameManager>
+            {
+                Weather,
+                Images
+            };
 
             StartCoroutine(StartUpManagers());
         }
 
         private IEnumerator StartUpManagers()
         {
+            NetworkService networkService = new();
             foreach (IGameManager manager in _startSequence)
-                manager.StartUp();
+                manager.StartUp(networkService);
             yield return null;
 
             int nReady = 0;

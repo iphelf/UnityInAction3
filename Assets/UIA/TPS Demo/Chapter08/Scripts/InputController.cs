@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace UIA.TPS_Demo.Chapter08.Scripts

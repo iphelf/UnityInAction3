@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UIA.TPS_Demo.Chapter09.Scripts
 {
-    public class DoorOpenDevice : MonoBehaviour
+    public class DoorOpenDevice : MonoBehaviour, IOperatee
     {
         [SerializeField] private Vector3 delta;
         private bool _open = false;

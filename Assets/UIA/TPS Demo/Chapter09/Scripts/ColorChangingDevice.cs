@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 namespace UIA.TPS_Demo.Chapter09.Scripts
 {
     [RequireComponent(typeof(MeshRenderer))]
-    public class ColorChangingDevice : MonoBehaviour
+    public class ColorChangingDevice : MonoBehaviour, IOperatee
     {
         private MeshRenderer _renderer;
 
