@@ -18,6 +18,7 @@
 - 设置天空渲染
 - Web资源请求、下载
 - Lambda的简单使用
+- AudioSource、AudioListener的简单使用
 
 我还应该深入学习的：
 - Unity的核心概念
@@ -44,4 +45,5 @@
 - Unity Shader
 - AssetBundle
 - Event、Lambda、Action、Func、delegate
-
+- 3D Audio
+- 了解Wwise相较于FMOD的优越之处

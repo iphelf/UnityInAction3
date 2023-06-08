@@ -6,14 +6,18 @@ namespace UIA.FPS_Demo.Chapter03
     [RequireComponent(typeof(Camera))]
     public class RayShooter : MonoBehaviour
     {
-        private Camera cam;
+        private Camera _cam;
 
         private bool _ignoreInputs = false;
+
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip clipHitWall;
+        [SerializeField] private AudioClip clipHitEnemy;
 
         // Start is called before the first frame update
         private void Start()
         {
-            cam = GetComponent<Camera>();
+            _cam = GetComponent<Camera>();
             captureCursor(true);
         }
 
@@ -23,19 +27,21 @@ namespace UIA.FPS_Demo.Chapter03
             if (_ignoreInputs) return;
             if (Input.GetButtonDown("Fire1"))
             {
-                var screenCenter = new Vector3(cam.pixelWidth / 2.0f, cam.pixelHeight / 2.0f, 0.0f);
-                var ray = cam.ScreenPointToRay(screenCenter);
+                var screenCenter = new Vector3(_cam.pixelWidth / 2.0f, _cam.pixelHeight / 2.0f, 0.0f);
+                var ray = _cam.ScreenPointToRay(screenCenter);
                 if (Physics.Raycast(ray, out var hit))
                 {
                     ReactiveTarget target = hit.transform.gameObject.GetComponent<ReactiveTarget>();
                     if (target is null)
                     {
                         Debug.Log($"Hit at building: {hit.point}");
+                        audioSource.PlayOneShot(clipHitWall);
                         StartCoroutine(s_showTemporarySphereAt(hit.point));
                     }
                     else
                     {
                         Debug.Log($"Hit at target");
+                        audioSource.PlayOneShot(clipHitEnemy);
                         target.ReactToHit();
                     }
                 }
@@ -70,8 +76,8 @@ namespace UIA.FPS_Demo.Chapter03
         private void OnGUI()
         {
             var size = 12;
-            float x = cam.pixelWidth / 2.0f + size / 2.0f;
-            float y = cam.pixelHeight / 2.0f + size / 2.0f;
+            float x = _cam.pixelWidth / 2.0f + size / 2.0f;
+            float y = _cam.pixelHeight / 2.0f + size / 2.0f;
             GUI.Label(new Rect(x, y, size, size), "+", new GUIStyle()
             {
                 alignment = TextAnchor.MiddleCenter
