@@ -19,6 +19,9 @@
 - Web资源请求、下载
 - Lambda的简单使用
 - AudioSource、AudioListener的简单使用
+- 初步使用Tag、Layer
+- 以Scene为单位的关卡管理
+- 在Editor文件夹添加脚本定制Unity编辑器
 
 我还应该深入学习的：
 - Unity的核心概念
@@ -47,3 +50,14 @@
 - Event、Lambda、Action、Func、delegate
 - 3D Audio
 - 了解Wwise相较于FMOD的优越之处
+- C#中对null的处理
+- NavMesh pathfinding
+- A* Pathfinding Project
+- Transform、MonoBehaviour的地位（能直接代表GO吗）
+- Tag、Layer、Static的作用
+- 定制Unity编辑器
+- 自己尝试做一个MutualExclusiveGroup，类似于ToggleGroup，只允许Enable组中的单个GO
+- 了解Material下的各种类型的预置Shader
+- Scene之间的数据共享管理
+- 更稳健的进度管理、成就管理
+- 更稳健的复用性组件开发模式

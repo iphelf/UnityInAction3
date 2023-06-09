@@ -1,27 +1,38 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using UIA.TPS_Demo.Chapter09.Scripts;
 using UnityEngine;
 
-namespace UIA.TPS_Demo.Chapter09.Scripts
+namespace UIA.Chapter12.Scripts
 {
     [RequireComponent(typeof(PlayerManager))]
     [RequireComponent(typeof(InventoryManager))]
+    [RequireComponent(typeof(MissionManager))]
+    [RequireComponent(typeof(SavingManager))]
     public class Managers : MonoBehaviour
     {
         public static PlayerManager Player { get; private set; }
         public static InventoryManager Inventory { get; private set; }
+        public static MissionManager Mission { get; private set; }
+        public static SavingManager Saving { get; private set; }
         private List<IGameManager> _startSequence;
 
         private void Awake()
         {
-            _startSequence = new List<IGameManager>();
+            DontDestroyOnLoad(gameObject);
 
             Player = GetComponent<PlayerManager>();
-            _startSequence.Add(Player);
-
             Inventory = GetComponent<InventoryManager>();
-            _startSequence.Add(Inventory);
+            Mission = GetComponent<MissionManager>();
+            Saving = GetComponent<SavingManager>();
+
+            _startSequence = new List<IGameManager>
+            {
+                Player,
+                Inventory,
+                Mission,
+                Saving
+            };
 
             StartCoroutine(StartUpManagers());
         }
@@ -41,11 +52,16 @@ namespace UIA.TPS_Demo.Chapter09.Scripts
                     if (manager.status == ManagerStatus.On)
                         ++nReady;
                 if (nReady > lastNReady)
+                {
                     Debug.Log($"Progress: {nReady}/{_startSequence.Count}");
+                    Messenger<int, int>.Broadcast(StartupEvent.ManagersProgress, nReady, _startSequence.Count);
+                }
+
                 yield return null;
             }
 
             Debug.Log("All managers started up");
+            Messenger.Broadcast(StartupEvent.ManagersStarted);
         }
     }
 }

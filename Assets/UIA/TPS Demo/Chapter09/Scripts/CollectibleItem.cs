@@ -1,4 +1,5 @@
 using System;
+using UIA.Chapter12.Scripts;
 using UnityEngine;
 
 namespace UIA.TPS_Demo.Chapter09.Scripts
@@ -9,7 +10,7 @@ namespace UIA.TPS_Demo.Chapter09.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            Managers.Inventory.AddItem(itemName);
+            Messenger<string>.Broadcast(GameEvent.ItemCollected, itemName);
             Destroy(gameObject);
         }
     }

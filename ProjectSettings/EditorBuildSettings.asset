@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/UIA/Chapter12/RPG Demo.unity
+    guid: 81b9cbf7052035d449e093d80601b1f5
+  - enabled: 1
+    path: Assets/UIA/Chapter12/Scenes/Level 1.unity
+    guid: 6a676f06762c4944c940f751d0d4990b
+  - enabled: 1
+    path: Assets/UIA/Chapter12/Scenes/Level 2.unity
+    guid: e71b85529d330694cb983f2fb2008e60
+  - enabled: 1
+    path: Assets/UIA/Chapter12/Scenes/Level 3.unity
+    guid: 573a2e14e476bfb4790d16e33539b3d1
   m_configObjects: {}

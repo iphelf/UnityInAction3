@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UIA.Chapter12.Scripts;
 using UnityEngine;
 
 namespace UIA.TPS_Demo.Chapter09.Scripts
@@ -19,6 +20,16 @@ namespace UIA.TPS_Demo.Chapter09.Scripts
             _numberOfItem = new Dictionary<string, int>();
 
             status = ManagerStatus.On;
+        }
+
+        private void OnEnable()
+        {
+            Messenger<string>.AddListener(GameEvent.ItemCollected, AddItem);
+        }
+
+        private void OnDisable()
+        {
+            Messenger<string>.RemoveListener(GameEvent.ItemCollected, AddItem);
         }
 
         private void DisplayItems()
@@ -89,6 +100,22 @@ namespace UIA.TPS_Demo.Chapter09.Scripts
             }
 
             return false;
+        }
+
+        public void Clear()
+        {
+            foreach (var item in _numberOfItem.Keys)
+                _numberOfItem[item] = 0;
+        }
+
+        public void GetData(Dictionary<string, object> data)
+        {
+            data["inventory"] = _numberOfItem;
+        }
+
+        public void SetData(Dictionary<string, object> data)
+        {
+            _numberOfItem = (Dictionary<string, int>)data["inventory"];
         }
     }
 }
